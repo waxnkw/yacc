@@ -1,0 +1,12 @@
+non_terminal: E T F
+
+terminal: + * ( ) id
+
+production:
+
+E: E + T
+E: T
+T: T * F
+T: F
+F: ( E )
+F: id

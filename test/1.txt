@@ -1,0 +1,26 @@
+non_terminal: S' S A
+
+terminal: a b c d
+
+production:
+
+S': S
+S: A a
+S:
+A: S d
+
+(1)       0       	            id * id + id $       shift 5
+(2)       0 5        id	        * id + id $          reduce by F -> id
+(3)       0 3        F	        * id + id $          reduce by T -> F
+(4)       0 2        T	        * id + id $          shift 7
+(5)       0 2 7      T *	    id + id $            shift 5
+(6)       0 2 7 5    T * id	    + id $               reduce by F -> id
+(7)       0 2 7 13   T * F	    + id $               reduce by T -> T * F
+(8)       0 2        T	        + id $               reduce by E -> T
+(9)       0 1        E	        + id $               shift 6
+(10)      0 1 6      E +	    id $                 shift 5
+(11)      0 1 6 5    E + id	    $                    reduce by F -> id
+(12)      0 1 6 3    E + F	    $                    reduce by T -> F
+(13)      0 1 6 12   E + T	    $                    reduce by E -> E + T
+(14)      0 1        E	        $                    accept
+complete
